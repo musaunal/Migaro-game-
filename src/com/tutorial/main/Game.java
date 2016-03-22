@@ -99,6 +99,7 @@ public class Game extends Canvas implements Runnable{
 		
 		g.dispose();
 		bs.show();
+		System.gc();
 	}
 	
 	public static int clamp(int var ,int min ,int  max){
