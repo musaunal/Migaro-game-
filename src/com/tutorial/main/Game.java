@@ -82,6 +82,11 @@ public class Game extends Canvas implements Runnable{
 		handler.tick();
 		hud.tick();
 		spawner.tick();
+		try {								//arrange your cpu usage
+		    Thread.sleep(7);                 //1000 milliseconds is one second. 
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 	}
 	private void render(){  // rearrange our background preferences
 		BufferStrategy bs = this.getBufferStrategy();
