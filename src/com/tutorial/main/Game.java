@@ -31,7 +31,7 @@ public class Game extends Canvas implements Runnable{
 		this.addKeyListener(new KeyInput(handler));
 			
 		handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player , handler));
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 60), r.nextInt(HEIGHT - 50), ID.BasicEnemy, handler));
+		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 				
 	}
 	public synchronized void start(){
