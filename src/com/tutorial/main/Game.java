@@ -17,22 +17,33 @@ public class Game extends Canvas implements Runnable{
 	private Random r ;
 	private HUD hud ;
 	private Spawn spawner;
+	private Menu menu;
+	
+	public enum STATE {
+		Menu,
+		Options,
+		Game
+	};
+	
+	public STATE gameState = STATE.Menu;       // why this STATE was can used as a class
 	
 	public Game(){
 		handler = new Handler();
 		r = new Random();
 		hud = new HUD() ;
-		
+		menu = new Menu(this,handler);
 		
 		new Window(WIDTH ,HEIGHT ,"let's build a game :D" ,this);
 		
 		spawner = new Spawn(handler ,hud);
 		
 		this.addKeyListener(new KeyInput(handler));
-			
-		handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player , handler));
-		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
-				
+		this.addMouseListener(menu);
+		
+		if(gameState == STATE.Game){
+			handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player , handler));
+			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+		}
 	}
 	public synchronized void start(){
 	thread = new Thread(this);
@@ -80,8 +91,13 @@ public class Game extends Canvas implements Runnable{
 	
 	private void tick(){
 		handler.tick();
-		hud.tick();
-		spawner.tick();
+		if (gameState == STATE.Game){
+			hud.tick();
+			spawner.tick();
+		}else if (gameState == STATE.Menu){
+			menu.tick();
+		}
+		
 	}
 	private void render(){  // rearrange our background preferences
 		BufferStrategy bs = this.getBufferStrategy();
@@ -95,7 +111,12 @@ public class Game extends Canvas implements Runnable{
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		handler.render(g);
-		hud.render(g);
+		
+		if (gameState == STATE.Game){
+			hud.render(g);
+		}else if (gameState == STATE.Menu || gameState == STATE.Options){
+			menu.render(g);
+		}
 		
 		g.dispose();
 		bs.show();
