@@ -26,6 +26,7 @@ public class Game extends Canvas implements Runnable{
 		End
 	};
 	
+	
 	public static STATE gameState = STATE.Menu;       // why this STATE was can used as a class
 	
 	public Game(){
@@ -33,6 +34,9 @@ public class Game extends Canvas implements Runnable{
 		r = new Random();
 		hud = new HUD() ;
 		menu = new Menu(this,handler, hud);
+		
+		AudioPlayer.load();
+		AudioPlayer.getMusic("music").loop();
 		
 		new Window(WIDTH ,HEIGHT ,"let's build a game :D" ,this);
 		
