@@ -22,16 +22,17 @@ public class Game extends Canvas implements Runnable{
 	public enum STATE {
 		Menu,
 		Options,
-		Game
+		Game,
+		End
 	};
 	
-	public STATE gameState = STATE.Menu;       // why this STATE was can used as a class
+	public static STATE gameState = STATE.Menu;       // why this STATE was can used as a class
 	
 	public Game(){
 		handler = new Handler();
 		r = new Random();
 		hud = new HUD() ;
-		menu = new Menu(this,handler);
+		menu = new Menu(this,handler, hud);
 		
 		new Window(WIDTH ,HEIGHT ,"let's build a game :D" ,this);
 		
@@ -91,10 +92,18 @@ public class Game extends Canvas implements Runnable{
 	
 	private void tick(){
 		handler.tick();
+		
 		if (gameState == STATE.Game){
 			hud.tick();
 			spawner.tick();
-		}else if (gameState == STATE.Menu){
+			
+			if (HUD.HEALTH <= 0){
+				hud.HEALTH=100;
+				gameState = STATE.End;
+				handler.clearEnemys();
+			}
+			
+		}else if (gameState == STATE.Menu || gameState == STATE.End){
 			menu.tick();
 		}
 		
@@ -114,7 +123,7 @@ public class Game extends Canvas implements Runnable{
 		
 		if (gameState == STATE.Game){
 			hud.render(g);
-		}else if (gameState == STATE.Menu || gameState == STATE.Options){
+		}else if (gameState == STATE.Menu || gameState == STATE.Options || gameState == STATE.End){
 			menu.render(g);
 		}
 		

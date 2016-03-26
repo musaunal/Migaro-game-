@@ -13,10 +13,12 @@ public class Menu extends MouseAdapter {
 	
 	private Game game;
 	private Handler handler;
+	private HUD hud;
 	private Random r = new Random();
 	
-	public Menu (Game game, Handler handler){
+	public Menu (Game game, Handler handler , HUD hud){
 		this.game= game;
+		this.hud= hud;
 		this.handler = handler;
 	}
 	
@@ -28,8 +30,8 @@ public class Menu extends MouseAdapter {
 	if (game.gameState == STATE.Menu){
 		//play button
 		if (mouseOver(mx, my, 210, 150, 200, 64)){
-			game.gameState = STATE.Game;
-			handler.addObject(new Player(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.Player , handler));
+			game.gameState = STATE.Game;			
+			handler.addObject(new Player(Game.WIDTH/2-32,Game.HEIGHT/2-32, ID.Player , handler));
 			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 		}
 		
@@ -51,8 +53,20 @@ public class Menu extends MouseAdapter {
 			if(mouseOver(mx, my, 210, 350, 200, 64))
 				game.gameState = STATE.Menu;
 				return;
+				
 		}
 	}
+	if(game.gameState == STATE.End){
+		if(mouseOver(mx, my, 210, 350, 200, 64))
+			game.gameState = STATE.Game;
+			hud.setLevel(1);
+			hud.setScore(0);
+			handler.addObject(new Player(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.Player , handler));
+			handler.clearEnemys();
+			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+		}
+	
+	
 		
 		
 	}
@@ -103,6 +117,21 @@ public class Menu extends MouseAdapter {
 			g.setFont(ftn2);
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Back", 275, 390);
+		}else if (game.gameState == STATE.End){
+			g.setColor(Color.white);
+			
+			Font ftn = new Font("arial",1,50);
+			Font ftn2 = new Font("arial",1,30);
+			Font ftn3 = new Font ("arial",1,20);
+			
+			g.setFont(ftn);
+			g.drawString("GAME OVER", 180, 100);  // title
+			
+			g.setFont(ftn3);
+			g.drawString("you lost with a score of: " + hud.getScore(), 175, 200);
+			g.setFont(ftn2);
+			g.drawRect(210, 350, 200, 64);
+			g.drawString("Try Again", 245, 390);
 		}
 	}
 
