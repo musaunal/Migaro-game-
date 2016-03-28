@@ -2,7 +2,6 @@ package com.tutorial.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Random;
 
@@ -16,7 +15,6 @@ public class Player extends GameObject {
 	public Player(int x, int y, ID id, Handler handler) { // we defined to prenferences of player
 		super(x, y, id);
 		this.handler = handler;
-		this.trail = trail;
 	}
 	
 	public Rectangle getBounds(){
@@ -27,8 +25,8 @@ public class Player extends GameObject {
 		x += velX;
 		y += velY;
 	
-		x = Game.clamp(x, 0, Game.WIDTH - 39);
-		y = Game.clamp(y, 0, Game.HEIGHT - 60);
+		x = Gamee.clamp(x, 0, Gamee.WIDTH - 39);
+		y = Gamee.clamp(y, 0, Gamee.HEIGHT - 60);
 	
 		handler.addObject(new Trail(x, y, ID.Trail, Color.WHITE, 32, 32, 0.05f , handler));
 		
@@ -47,9 +45,9 @@ public class Player extends GameObject {
 				if (getBounds().intersects(tempObject.getBounds())){
 					//collision code
 					
-					if (Game.diff == 0)
+					if (Gamee.diff == 0)
 						HUD.HEALTH -= 2 ;
-					else if (Game.diff == 1)
+					else if (Gamee.diff == 1)
 						HUD.HEALTH -= 3;
 					
 					

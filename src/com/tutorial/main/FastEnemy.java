@@ -6,19 +6,16 @@ import java.awt.Rectangle;
 
 public class FastEnemy extends GameObject {
 	
-	private Trail trail;
-	private Player player;
 	private Handler handler ;
 	
 	public FastEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
-		this.trail = trail;
 		
-		if (Game.diff == 0){
+		if (Gamee.diff == 0){
 			velX = 2;
 			velY = 9;	
-		}else if (Game.diff == 1){
+		}else if (Gamee.diff == 1){
 			velX = 3;
 			velY = 12;
 
@@ -34,8 +31,8 @@ public class FastEnemy extends GameObject {
 	x += velX ;
 	y += velY ;
 	
-	if(y <= 0 || y >= Game.HEIGHT - 48) velY *= -1 ;
-	if(x <= 0 || x >= Game.WIDTH - 16) velX *= -1 ;
+	if(y <= 0 || y >= Gamee.HEIGHT - 48) velY *= -1 ;
+	if(x <= 0 || x >= Gamee.WIDTH - 16) velX *= -1 ;
 	
 	
 	handler.addObject(new Trail(x, y, ID.Trail, Color.CYAN, 16, 16, 0.05f , handler));

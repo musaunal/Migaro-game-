@@ -9,12 +9,11 @@ public class SmartEnemy extends GameObject {
 	//private Trail trail;
 	private GameObject player;
 	private Handler handler ;
-	private Game game;
 	
-	public SmartEnemy(float x, float y, ID id, Handler handler,Game game) {
+	
+	public SmartEnemy(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
-		this.game = game;
 		
 		
 		for (int i=0; i<handler.object.size(); i++ ){
@@ -35,10 +34,10 @@ public class SmartEnemy extends GameObject {
 	// distance is a simple hipotenüs
 	float distance = (float) Math.sqrt((x-player.getX())*(x-player.getX()) + (y-player.getY())*(y-player.getY()));
 	
-	if (game.diff == 0){
+	if (Gamee.diff == 0){
 		velX = ((-1/distance) * diffX );
 		velY = ((-1/distance) * diffY );
-	}else if (game.diff == 1){
+	}else if (Gamee.diff == 1){
 		velX = ((-1/distance) * diffX *5/2);
 		velY = ((-1/distance) * diffY *5/2);
 	}

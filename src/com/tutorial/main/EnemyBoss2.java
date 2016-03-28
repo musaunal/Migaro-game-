@@ -7,8 +7,6 @@ import java.util.Random;
 
 public class EnemyBoss2 extends GameObject {
 	
-	private Trail trail;
-	private Player player;
 	private Handler handler ;
 	Random r = new Random();
 	
@@ -17,7 +15,6 @@ public class EnemyBoss2 extends GameObject {
 	public EnemyBoss2(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
-		this.trail = trail;
 		
 		velX = 0;
 		velY = -2;
@@ -40,14 +37,14 @@ public class EnemyBoss2 extends GameObject {
 		if (velX > 0)	velX += 0.005f;
 		else if (velX < 0) velX -= 0.005f;
 		
-		velX = Game.clamp(velX, -10, 10);
+		velX = Gamee.clamp(velX, -10, 10);
 		
 		int spawn = r.nextInt(10);
 		if (spawn == 0) handler.addObject(new EnemyBossBullet( (int)x+48 , (int)y+48, ID.EnemyBossBullet, handler, -5));
 	}
 	else timer--;
 	
-	if(x <= 0 || x >= Game.WIDTH - 96) velX *= -1 ;
+	if(x <= 0 || x >= Gamee.WIDTH - 96) velX *= -1 ;
 	
 	
 	

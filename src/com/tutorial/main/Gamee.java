@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-public class Game extends Canvas implements Runnable{
+public class Gamee extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1550691097823471818L;
 	public static final int WIDTH = 640 , HEIGHT = WIDTH/12*9 ;
 	
@@ -36,25 +36,25 @@ public class Game extends Canvas implements Runnable{
 	
 	public static STATE gameState = STATE.Menu;       // why this STATE was can used as a class
 	
-	public Game(){
+	public Gamee(){
 		handler = new Handler();
 		r = new Random();
 		hud = new HUD() ;
-		menu = new Menu(this,handler, hud);
+		menu = new Menu(handler, hud);
 		
 		AudioPlayer.load();
 		AudioPlayer.getMusic("music").loop();
 		
 		new Window(WIDTH ,HEIGHT ,"let's build a game :D" ,this);
 		
-		spawner = new Spawn(handler ,hud, this);
+		spawner = new Spawn(handler ,hud);
 		
-		this.addKeyListener(new KeyInput(handler, this));
+		this.addKeyListener(new KeyInput(handler));
 		this.addMouseListener(menu);
 		
 		if(gameState == STATE.Game){
 			handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player , handler));
-			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 60), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+			handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 60), r.nextInt(HEIGHT - 50), ID.BasicEnemy, handler));
 		}
 	}
 	public synchronized void start(){
@@ -113,7 +113,7 @@ public class Game extends Canvas implements Runnable{
 				handler.tick();
 				
 				if (HUD.HEALTH <= 0){
-					hud.HEALTH=100;
+					HUD.HEALTH=100;
 					gameState = STATE.End;
 					handler.clearEnemys();
 				}
@@ -150,6 +150,7 @@ public class Game extends Canvas implements Runnable{
 		
 		g.dispose();
 		bs.show();
+		System.gc();
 	}
 	
 	public static float clamp(float var ,float min ,float  max){
@@ -162,7 +163,7 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public static void main (String []args){
-		new Game();	
+		new Gamee();	
 	}
 	
 }
