@@ -13,6 +13,12 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;
 	private boolean running = false;
 	
+	public static boolean paused = false;
+	public int diff = 0;
+	
+	// 0 = normal
+	// 1 = hard
+	
 	private Handler handler;
 	private Random r ;
 	private HUD hud ;
@@ -22,6 +28,7 @@ public class Game extends Canvas implements Runnable{
 	public enum STATE {
 		Menu,
 		Options,
+		Select,
 		Game,
 		End
 	};
@@ -40,9 +47,9 @@ public class Game extends Canvas implements Runnable{
 		
 		new Window(WIDTH ,HEIGHT ,"let's build a game :D" ,this);
 		
-		spawner = new Spawn(handler ,hud);
+		spawner = new Spawn(handler ,hud, this);
 		
-		this.addKeyListener(new KeyInput(handler));
+		this.addKeyListener(new KeyInput(handler, this));
 		this.addMouseListener(menu);
 		
 		if(gameState == STATE.Game){
@@ -95,20 +102,26 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	private void tick(){
-		handler.tick();
+		
 		
 		if (gameState == STATE.Game){
-			hud.tick();
-			spawner.tick();
 			
-			if (HUD.HEALTH <= 0){
-				hud.HEALTH=100;
-				gameState = STATE.End;
-				handler.clearEnemys();
+			if (!paused){
+				
+				hud.tick();
+				spawner.tick();
+				handler.tick();
+				
+				if (HUD.HEALTH <= 0){
+					hud.HEALTH=100;
+					gameState = STATE.End;
+					handler.clearEnemys();
+				}
 			}
 			
-		}else if (gameState == STATE.Menu || gameState == STATE.End){
+		}else if (gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select){
 			menu.tick();
+			handler.tick();
 		}
 		
 	}
@@ -125,9 +138,13 @@ public class Game extends Canvas implements Runnable{
 		
 		handler.render(g);
 		
+		if (paused){
+			g.drawString("PAUSED", WIDTH/2, HEIGHT/2);
+		}
+		
 		if (gameState == STATE.Game){
 			hud.render(g);
-		}else if (gameState == STATE.Menu || gameState == STATE.Options || gameState == STATE.End){
+		}else if (gameState == STATE.Menu || gameState == STATE.Options || gameState == STATE.End || gameState == STATE.Select){
 			menu.render(g);
 		}
 		

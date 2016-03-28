@@ -3,13 +3,18 @@ package com.tutorial.main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import com.tutorial.main.Game.STATE;
+
 public class KeyInput extends KeyAdapter{
 
 	private Handler handler;
 	private boolean[] keyDown = new boolean[4];
+	private Game game;
 	
-	public KeyInput(Handler handler){
+	public KeyInput(Handler handler, Game game){
 		this.handler = handler;
+		
+		this.game = game;
 		
 		for (int i=0; i<4; i++){
 			keyDown[i]=false;
@@ -30,9 +35,6 @@ public class KeyInput extends KeyAdapter{
 				if(key == KeyEvent.VK_S){ tempObject.setVelY(5); keyDown[2]=true; }
 				if(key == KeyEvent.VK_D){ tempObject.setVelX(5); keyDown[3]=true; }
 			}
-			
-		
-		
 		}
 	}
 	
@@ -53,21 +55,22 @@ public class KeyInput extends KeyAdapter{
 				//vertical movement 
 				if( !keyDown[0] && !keyDown[2]) tempObject.setVelY(0);
 				//horizonal movement
-				if( !keyDown[1] && !keyDown[3]) tempObject.setVelX(0);
-				
-				
+				if( !keyDown[1] && !keyDown[3]) tempObject.setVelX(0);	
 			}
-			
+		}
 		
+		if(key == KeyEvent.VK_P) {
+			if (game.gameState == STATE.Game){
+				if(Game.paused == false)
+					Game.paused = true ;
+				else Game.paused=false;
+			}
 		}
 		
 		if(key == KeyEvent.VK_ESCAPE){
 			System.exit(1);
 		}
-		
-	
-	
-	
+
 	}
 	
 }
