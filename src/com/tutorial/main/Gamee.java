@@ -79,7 +79,6 @@ public class Gamee extends Canvas implements Runnable{
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
-		int frames = 0;
 		while (running){
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns ;
@@ -90,22 +89,21 @@ public class Gamee extends Canvas implements Runnable{
 			}
 			if (running)
 				render();
-			frames++;
-			
 			if (System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-				//System.out.println("FPS: " + frames);
-				frames=0;
 			}
 		}
 		stop();
 	}
 	
 	private void tick(){
-		
-		
+		try {								//arrange your cpu usage
+		    Thread.sleep(5);                 //1000 milliseconds is one second. 
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		if (gameState == STATE.Game){
-			
+		
 			if (!paused){
 				
 				hud.tick();
@@ -120,6 +118,11 @@ public class Gamee extends Canvas implements Runnable{
 			}
 			
 		}else if (gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select){
+			try {								//arrange your cpu usage
+			    Thread.sleep(10);                 //1000 milliseconds is one second. 
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
 			menu.tick();
 			handler.tick();
 		}
