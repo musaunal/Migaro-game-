@@ -169,7 +169,7 @@ public class Menu extends MouseAdapter {
 			Font ftn2 = new Font("arial",1,30);
 			
 			g.setFont(ftn);
-			g.drawString("Select Difficulty", 240, 100);  // title
+			g.drawString("Select Difficulty", 125, 100);  // title
 			
 			g.setFont(ftn2);
 			g.drawRect(210, 150, 200, 64);

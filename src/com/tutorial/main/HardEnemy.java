@@ -28,8 +28,8 @@ public class HardEnemy extends GameObject {
 	x += velX ;
 	y += velY ;
 	
-	if(y <= 0 || y >= Game.HEIGHT - 48){ if(velY < 0)velY = -(r.nextInt(7)+1)*-1; else velY =(r.nextInt(7)+1)*-1;  }
-	if(x <= 0 || x >= Game.WIDTH - 16){ if(velX < 0)velX = -(r.nextInt(7)+1)*-1; else velX =(r.nextInt(7)+1)*-1; }
+	if(y <= 24 || y >= Game.HEIGHT - 64){ if(velY < 0)velY = -(r.nextInt(7)+1)*-1; else velY =(r.nextInt(7)+1)*-1;  }
+	if(x <= 16 || x >= Game.WIDTH - 48){ if(velX < 0)velX = -(r.nextInt(7)+1)*-1; else velX =(r.nextInt(7)+1)*-1; }
 	
 	
 	handler.addObject(new Trail(x, y, ID.Trail, Color.YELLOW, 16, 16, 0.05f , handler));

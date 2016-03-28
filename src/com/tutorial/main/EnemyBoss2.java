@@ -5,22 +5,22 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-public class EnemyBoss extends GameObject {
+public class EnemyBoss2 extends GameObject {
 	
 	private Trail trail;
 	private Player player;
 	private Handler handler ;
 	Random r = new Random();
 	
-	private int timer = 50;
+	private int timer = 90;
 	
-	public EnemyBoss(int x, int y, ID id, Handler handler) {
+	public EnemyBoss2(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
 		this.trail = trail;
 		
 		velX = 0;
-		velY = 2;
+		velY = -2;
 		
 		}
 	
@@ -43,7 +43,7 @@ public class EnemyBoss extends GameObject {
 		velX = Game.clamp(velX, -10, 10);
 		
 		int spawn = r.nextInt(10);
-		if (spawn == 0) handler.addObject(new EnemyBossBullet( (int)x+48 , (int)y+48, ID.EnemyBossBullet, handler, 5));
+		if (spawn == 0) handler.addObject(new EnemyBossBullet( (int)x+48 , (int)y+48, ID.EnemyBossBullet, handler, -5));
 	}
 	else timer--;
 	

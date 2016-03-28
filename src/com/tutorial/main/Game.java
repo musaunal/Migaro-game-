@@ -14,7 +14,7 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	
 	public static boolean paused = false;
-	public int diff = 0;
+	public static int diff = 0;
 	
 	// 0 = normal
 	// 1 = hard

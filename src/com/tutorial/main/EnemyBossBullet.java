@@ -12,13 +12,13 @@ public class EnemyBossBullet extends GameObject {
 	private Handler handler ;
 	Random r = new Random();
 	
-	public EnemyBossBullet(int x, int y, ID id, Handler handler) {
+	public EnemyBossBullet(int x, int y, ID id, Handler handler ,int speed) {
 		super(x, y, id);
 		this.handler = handler;
 		this.trail = trail;
 		
 		velX = (r.nextInt(5 - -5) + -5);
-		velY = 5;
+		velY = speed;
 		
 		}
 	
@@ -29,9 +29,6 @@ public class EnemyBossBullet extends GameObject {
 	public void tick() {
 	x += velX ;
 	y += velY ;
-	
-	//if(y <= 0 || y >= Game.HEIGHT - 48) velY *= -1 ;
-	//if(x <= 0 || x >= Game.WIDTH - 16) velX *= -1 ;
 	
 	
 	if (y >= Game.HEIGHT) handler.removeObject(this);

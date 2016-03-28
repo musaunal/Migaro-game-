@@ -47,11 +47,18 @@ public class Player extends GameObject {
 				if (getBounds().intersects(tempObject.getBounds())){
 					//collision code
 					
-					HUD.HEALTH -= 2 ;
+					if (Game.diff == 0)
+						HUD.HEALTH -= 2 ;
+					else if (Game.diff == 1)
+						HUD.HEALTH -= 3;
 					
 					
 					
 				}	
+			}else if (tempObject.getId() == ID.EnemyBossBullet){
+				if (getBounds().intersects(tempObject.getBounds())){
+					HUD.HEALTH -= 1 ;
+				}
 			}
 			
 			

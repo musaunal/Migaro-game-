@@ -15,9 +15,15 @@ public class FastEnemy extends GameObject {
 		this.handler = handler;
 		this.trail = trail;
 		
-		velX = 2;
-		velY = 9;
-		
+		if (Game.diff == 0){
+			velX = 2;
+			velY = 9;	
+		}else if (Game.diff == 1){
+			velX = 3;
+			velY = 12;
+
+		}
+				
 		}
 	
 	public Rectangle getBounds(){
