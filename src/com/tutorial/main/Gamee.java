@@ -24,6 +24,7 @@ public class Gamee extends Canvas implements Runnable{
 	private HUD hud ;
 	private Spawn spawner;
 	private Menu menu;
+	private Image image;
 	
 	public enum STATE {
 		Menu,
@@ -40,7 +41,8 @@ public class Gamee extends Canvas implements Runnable{
 		handler = new Handler();
 		r = new Random();
 		hud = new HUD() ;
-		menu = new Menu(handler, hud);
+		image = new Image();
+		menu = new Menu(handler, hud ,image);
 		
 		AudioPlayer.load();
 		AudioPlayer.getMusic("music").loop();
@@ -53,7 +55,7 @@ public class Gamee extends Canvas implements Runnable{
 		this.addMouseListener(menu);
 		
 		if(gameState == STATE.Game){
-			handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player , handler));
+			handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player , handler , image));
 			handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 60), r.nextInt(HEIGHT - 50), ID.BasicEnemy, handler));
 		}
 	}
@@ -97,11 +99,11 @@ public class Gamee extends Canvas implements Runnable{
 	}
 	
 	private void tick(){
-		try {								//arrange your cpu usage
+		/*try {								//arrange your cpu usage
 		    Thread.sleep(5);                 //1000 milliseconds is one second. 
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
-		}
+		}*/
 		if (gameState == STATE.Game){
 		
 			if (!paused){

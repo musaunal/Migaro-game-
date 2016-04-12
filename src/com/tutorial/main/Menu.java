@@ -14,10 +14,12 @@ public class Menu extends MouseAdapter {
 	private Handler handler;
 	private HUD hud;
 	private Random r = new Random();
+	private Image image;
 	
-	public Menu ( Handler handler , HUD hud){
+	public Menu ( Handler handler , HUD hud , Image image){
 		this.hud= hud;
 		this.handler = handler;
+		this.image = image;
 	}
 	
 	public void mousePressed(MouseEvent e){
@@ -51,7 +53,7 @@ public class Menu extends MouseAdapter {
 		if (mouseOver(mx, my, 210, 150, 200, 64)){
 			AudioPlayer.getSound("sound").play();	
 			Gamee.gameState = STATE.Game;			
-			handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler));
+			handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image));
 			handler.addObject(new BasicEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
 			
 			Gamee.diff = 0;
@@ -61,7 +63,7 @@ public class Menu extends MouseAdapter {
 		if(mouseOver(mx, my, 210, 250, 200, 64)){
 			AudioPlayer.getSound("sound").play();		
 			Gamee.gameState = STATE.Game;			
-			handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler));
+			handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image));
 			handler.addObject(new HardEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
 			
 			Gamee.diff = 1;
@@ -77,13 +79,43 @@ public class Menu extends MouseAdapter {
 	if (Gamee.gameState == STATE.Options){
 		
 		//back button for options
-		if(Gamee.gameState == STATE.Options){
-			if(mouseOver(mx, my, 210, 350, 200, 64))
-				Gamee.gameState = STATE.Menu;
-				AudioPlayer.getSound("sound").play();	
-				return;
-				
+		if(mouseOver(mx, my, 210, 350, 200, 64)){
+			Gamee.gameState = STATE.Menu;
+			AudioPlayer.getSound("sound").play();	
+			return;
 		}
+		
+		//	choose button creaper
+		if (mouseOver(mx, my, 42 , 200 ,80 ,26 )){
+			Player.character = image.creaper;
+			return;
+		}
+		
+		//choose button soldier
+		if (mouseOver(mx, my, 148 , 200 ,80 ,26 )){
+			Player.character = image.soldier;
+			return;
+		}
+		
+		//choose button ýronman
+		if (mouseOver(mx, my, 264 , 200 ,80 ,26 )){
+			Player.character = image.ýronman;
+			return;
+		}
+		
+		//choose button payday
+		if (mouseOver(mx, my, 382 , 200 ,80 ,26 )){
+			Player.character = image.payday;
+			return;
+		}
+		
+		//choose button skull
+		if (mouseOver(mx, my, 492 , 200 ,80 ,26 )){
+			Player.character = image.skull;
+			return;
+		}
+			
+			
 	}
 	if(Gamee.gameState == STATE.End){
 		if(mouseOver(mx, my, 210, 350, 200, 64))
@@ -129,22 +161,48 @@ public class Menu extends MouseAdapter {
 			g.drawString("Play", 275, 190);
 			
 			g.drawRect(210, 250, 200, 64);
-			g.drawString("Options", 275, 290);
+			g.drawString("Options", 253, 290);
 			
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Quit", 275, 390);
 		}else if (Gamee.gameState == STATE.Options){
-			g.setColor(Color.white);
+			g.setColor(Color.CYAN);
 			
 			Font ftn = new Font("arial",1,50);
 			Font ftn2 = new Font("arial",1,30);
 			
 			g.setFont(ftn);
-			g.drawString("Options", 240, 100);  // title
+			g.drawString("Choose your character", 40, 75);  // title
 			
 			g.setFont(ftn2);
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Back", 275, 390);
+			
+			image.getImage(image.creaper);
+			g.drawImage(image.img , 50 , 100 ,null);
+			image.getImage(image.button);
+			g.drawImage(image.img , 42 , 200 ,null);
+			
+			image.getImage(image.soldier);
+			g.drawImage(image.img , 155 , 100 ,null);
+			image.getImage(image.button);
+			g.drawImage(image.img , 148 , 200 ,null);
+			
+			image.getImage(image.ýronman);
+			g.drawImage(image.img , 270 , 100 ,null);
+			image.getImage(image.button);
+			g.drawImage(image.img , 264 , 200 ,null);
+			
+			image.getImage(image.payday);
+			g.drawImage(image.img , 385 , 100 ,null);
+			image.getImage(image.button);
+			g.drawImage(image.img , 382 , 200 ,null);
+			
+			image.getImage(image.skull);
+			g.drawImage(image.img , 500 , 100 ,null);
+			image.getImage(image.button);
+			g.drawImage(image.img , 492 , 200 ,null);
+			
 		}else if (Gamee.gameState == STATE.End){
 			g.setColor(Color.white);
 			

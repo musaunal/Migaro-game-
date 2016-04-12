@@ -5,6 +5,8 @@ import java.util.LinkedList;
 
 public class Handler {
 
+	private Image image = new Image();
+	
 	LinkedList <GameObject> object = new LinkedList<GameObject>();
 	
 	public void tick (){
@@ -29,7 +31,7 @@ public class Handler {
 			if (tempObject.getId() == ID.Player ) {
 				object.clear();
 				if (Gamee.gameState != Gamee.STATE.End)
-				addObject(new Player( (int)tempObject.getX(), (int)tempObject.getY(), ID.Player, this));
+				addObject(new Player( (int)tempObject.getX(), (int)tempObject.getY(), ID.Player, this ,image));
 			}
 		}
 	}
