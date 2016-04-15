@@ -1,6 +1,5 @@
 package com.tutorial.main;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -20,7 +19,6 @@ public class Player extends GameObject {
 	public static String character = "img/skull.png";
 	private Animation anim;
 	private BufferedImage img;
-	private Graphics2D g;
 	private int offsetXanim = 70;
     private int offsetYanim = -23;
 
