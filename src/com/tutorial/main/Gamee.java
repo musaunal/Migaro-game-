@@ -114,6 +114,7 @@ public class Gamee extends Canvas implements Runnable{
 				
 				if (HUD.HEALTH <= 0){
 					HUD.HEALTH=100;
+					AudioPlayer.getSound("end").play();
 					gameState = STATE.End;
 					handler.clearEnemys();
 				}

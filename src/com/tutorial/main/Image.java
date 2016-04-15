@@ -2,7 +2,6 @@ package com.tutorial.main;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.io.IOException;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 

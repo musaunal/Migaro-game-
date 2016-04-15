@@ -41,14 +41,27 @@ public class Player extends GameObject {
 				if (getBounds().intersects(tempObject.getBounds())){
 					//collision code
 					
+					if(tempObject.getId() == ID.BasicEnemy){
+					AudioPlayer.getSound("basýc").play();
+					}
+					
+					if(tempObject.getId() == ID.FastEnemy)
+						AudioPlayer.getSound("fast").play();
+					
+					if(tempObject.getId() == ID.SmartEnemy)
+						AudioPlayer.getSound("smart").play();
+					
 					if (Gamee.diff == 0)
 						HUD.HEALTH -= 2 ;
 					else if (Gamee.diff == 1)
 						HUD.HEALTH -= 3;
 					
+					
+					
 				}	
 			}else if (tempObject.getId() == ID.EnemyBossBullet){
 				if (getBounds().intersects(tempObject.getBounds())){
+					AudioPlayer.getSound("basýc").play();
 					HUD.HEALTH -= 1 ;
 				}
 			}		
@@ -59,9 +72,8 @@ public class Player extends GameObject {
 		
 		
 		image.getImage(character);
-		//g.setColor(Color.WHITE);
 		g.drawImage(image.img, (int)x, (int)y, null);
-		//g.fillRect((int)x, (int)y, 32, 32);
+		//g.fillRect((int)x, (int)y, 32, 32);  old player
 	}
 
 }

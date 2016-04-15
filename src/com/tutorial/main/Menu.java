@@ -15,6 +15,7 @@ public class Menu extends MouseAdapter {
 	private HUD hud;
 	private Random r = new Random();
 	private Image image;
+
 	
 	public Menu ( Handler handler , HUD hud , Image image){
 		this.hud= hud;
@@ -28,6 +29,8 @@ public class Menu extends MouseAdapter {
 		 
 		
 	if (Gamee.gameState == STATE.Menu){
+		
+		
 		//play button
 		if (mouseOver(mx, my, 210, 150, 200, 64)){
 			AudioPlayer.getSound("sound").play();	
@@ -148,13 +151,17 @@ public class Menu extends MouseAdapter {
 	
 	public void render(Graphics g){
 		if (Gamee.gameState == STATE.Menu){
-			g.setColor(Color.white);
+			
+			image.getImage("img/back.png");
+			g.drawImage(image.img, 0, 0, null);
+			
+			g.setColor(Color.WHITE);
 			
 			Font ftn = new Font("arial",1,50);
 			Font ftn2 = new Font("arial",1,30);
 			
 			g.setFont(ftn);
-			g.drawString("Menu", 240, 100);  // title
+			//g.drawString("Menu", 240, 100);  // title
 			
 			g.setFont(ftn2);
 			g.drawRect(210, 150, 200, 64);
@@ -166,7 +173,11 @@ public class Menu extends MouseAdapter {
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Quit", 275, 390);
 		}else if (Gamee.gameState == STATE.Options){
-			g.setColor(Color.CYAN);
+			
+			image.getImage("img/back.png");
+			g.drawImage(image.img, 0, 0, null);
+			
+			g.setColor(Color.WHITE);
 			
 			Font ftn = new Font("arial",1,50);
 			Font ftn2 = new Font("arial",1,30);
@@ -204,6 +215,10 @@ public class Menu extends MouseAdapter {
 			g.drawImage(image.img , 492 , 200 ,null);
 			
 		}else if (Gamee.gameState == STATE.End){
+			
+			image.getImage("img/back.png");
+			g.drawImage(image.img, 0, 0, null);
+			
 			g.setColor(Color.white);
 			
 			Font ftn = new Font("arial",1,50);
@@ -219,6 +234,10 @@ public class Menu extends MouseAdapter {
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Try Again", 245, 390);
 		}else if (Gamee.gameState == STATE.Select){
+			
+			image.getImage("img/back.png");
+			g.drawImage(image.img, 0, 0, null);
+			
 			g.setColor(Color.white);
 			
 			Font ftn = new Font("arial",1,50);
