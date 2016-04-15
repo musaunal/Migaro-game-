@@ -1,6 +1,7 @@
 package com.tutorial.main;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.LinkedList;
 
 public class Handler {
@@ -16,7 +17,7 @@ public class Handler {
 			tempObject.tick();
 		}
 	}	
-	public void render (Graphics g){
+	public void render (Graphics2D g){
 		for (int i=0 ; i< object.size() ; i++){
 			GameObject tempObject = object.get(i);
 		

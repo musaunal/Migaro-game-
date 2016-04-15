@@ -17,6 +17,8 @@ public class Image {
 	public String ýronman = "img/ýronman.png";
 	public String creaper = "img/creaper.png";
 	public String button = "img/button.png";
+	public String bullet = "img/bullet.png";
+	public String playerAnim ="img/playeranim.png";
 	
 	
 	public void getImage (String picture){

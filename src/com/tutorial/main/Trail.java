@@ -31,7 +31,7 @@ public class Trail extends GameObject{
 		}else handler.removeObject(this);
 
 	}
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setComposite(makeTranspatant(alpha));
 		

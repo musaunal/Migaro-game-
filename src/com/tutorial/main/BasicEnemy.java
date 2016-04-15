@@ -2,6 +2,7 @@ package com.tutorial.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class BasicEnemy extends GameObject {
@@ -34,7 +35,7 @@ public class BasicEnemy extends GameObject {
 	}
 
 
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		g.setColor(Color.RED);
 		g.fillRect((int)x,(int) y, 16, 16);
 		

@@ -89,31 +89,36 @@ public class Menu extends MouseAdapter {
 		}
 		
 		//	choose button creaper
-		if (mouseOver(mx, my, 42 , 200 ,80 ,26 )){
+		if (mouseOver(mx, my, 75 , 125 ,32 ,32 )){
+			AudioPlayer.getSound("sound").play();
 			Player.character = image.creaper;
 			return;
 		}
 		
 		//choose button soldier
-		if (mouseOver(mx, my, 148 , 200 ,80 ,26 )){
+		if (mouseOver(mx, my, 175 , 125 ,32 ,32 )){
+			AudioPlayer.getSound("sound").play();
 			Player.character = image.soldier;
 			return;
 		}
 		
 		//choose button ýronman
-		if (mouseOver(mx, my, 264 , 200 ,80 ,26 )){
+		if (mouseOver(mx, my, 270 ,125 ,32 ,32 )){
+			AudioPlayer.getSound("sound").play();
 			Player.character = image.ýronman;
 			return;
 		}
 		
 		//choose button payday
-		if (mouseOver(mx, my, 382 , 200 ,80 ,26 )){
+		if (mouseOver(mx, my, 385 , 125 ,32 ,32 )){
+			AudioPlayer.getSound("sound").play();
 			Player.character = image.payday;
 			return;
 		}
 		
 		//choose button skull
-		if (mouseOver(mx, my, 492 , 200 ,80 ,26 )){
+		if (mouseOver(mx, my, 500 , 125 ,32 ,32 )){
+			AudioPlayer.getSound("sound").play();
 			Player.character = image.skull;
 			return;
 		}
@@ -174,7 +179,7 @@ public class Menu extends MouseAdapter {
 			g.drawString("Quit", 275, 390);
 		}else if (Gamee.gameState == STATE.Options){
 			
-			image.getImage("img/back.png");
+			image.getImage("img/back.png");    //background picture
 			g.drawImage(image.img, 0, 0, null);
 			
 			g.setColor(Color.WHITE);
@@ -190,29 +195,20 @@ public class Menu extends MouseAdapter {
 			g.drawString("Back", 275, 390);
 			
 			image.getImage(image.creaper);
-			g.drawImage(image.img , 50 , 100 ,null);
-			image.getImage(image.button);
-			g.drawImage(image.img , 42 , 200 ,null);
+			g.drawImage(image.img , 75 , 125 ,null);
 			
 			image.getImage(image.soldier);
-			g.drawImage(image.img , 155 , 100 ,null);
-			image.getImage(image.button);
-			g.drawImage(image.img , 148 , 200 ,null);
+			g.drawImage(image.img , 175 , 125 ,null);
 			
 			image.getImage(image.ýronman);
-			g.drawImage(image.img , 270 , 100 ,null);
-			image.getImage(image.button);
-			g.drawImage(image.img , 264 , 200 ,null);
+			g.drawImage(image.img , 270 , 125 ,null);
 			
 			image.getImage(image.payday);
-			g.drawImage(image.img , 385 , 100 ,null);
-			image.getImage(image.button);
-			g.drawImage(image.img , 382 , 200 ,null);
+			g.drawImage(image.img , 385 , 125 ,null);
 			
 			image.getImage(image.skull);
-			g.drawImage(image.img , 500 , 100 ,null);
-			image.getImage(image.button);
-			g.drawImage(image.img , 492 , 200 ,null);
+			g.drawImage(image.img , 500 , 125 ,null);
+
 			
 		}else if (Gamee.gameState == STATE.End){
 			

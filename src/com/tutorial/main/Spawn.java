@@ -7,12 +7,14 @@ public class Spawn {
 	private Handler handler;
 	private HUD hud;
 	private Random r = new Random();
+	private Image image;
 	
 	private int scoreKeep ;
 	
-	public Spawn (Handler handler,HUD hud){
+	public Spawn (Handler handler,HUD hud ,Image image){
 		this.handler = handler;
 		this.hud = hud;
+		this.image = image;
 	}
 	
 	public void tick(){
@@ -38,7 +40,7 @@ public class Spawn {
 				}else if (hud.getLevel() == 10){
 					handler.clearEnemys();
 					AudioPlayer.getSound("boss").play();
-					handler.addObject(new EnemyBoss((Gamee.WIDTH/2)-48 , -120 , ID.EnemyBoss, handler));
+					handler.addObject(new EnemyBoss((Gamee.WIDTH/2)-48 , -120 , ID.EnemyBoss, handler ,image));
 				}
 			}else if (Gamee.diff == 1){
 				if (hud.getLevel() == 2){
@@ -56,9 +58,9 @@ public class Spawn {
 				}else if (hud.getLevel() == 10){
 					handler.clearEnemys();
 					AudioPlayer.getSound("boss").play();
-					handler.addObject(new EnemyBoss((Gamee.WIDTH/2)-48 , -120 , ID.EnemyBoss, handler));
+					handler.addObject(new EnemyBoss((Gamee.WIDTH/2)-48 , -120 , ID.EnemyBoss, handler ,image));
 				}else if (hud.getLevel() == 15){
-					handler.addObject(new EnemyBoss2((Gamee.WIDTH/2)-48 , 600 , ID.EnemyBoss2, handler));
+					handler.addObject(new EnemyBoss2((Gamee.WIDTH/2)-48 , 600 , ID.EnemyBoss2, handler ,image));
 				}
 			}
 			

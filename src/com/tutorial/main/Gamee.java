@@ -3,6 +3,7 @@ package com.tutorial.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
@@ -49,7 +50,7 @@ public class Gamee extends Canvas implements Runnable{
 		
 		new Window(WIDTH ,HEIGHT ,"let's build a game :D" ,this);
 		
-		spawner = new Spawn(handler ,hud);
+		spawner = new Spawn(handler ,hud , image);
 		
 		this.addKeyListener(new KeyInput(handler));
 		this.addMouseListener(menu);
@@ -75,6 +76,7 @@ public class Gamee extends Canvas implements Runnable{
 	}
 	
 	public void run(){    /// this code calculate FPS of game
+		
 		this.requestFocus();
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
@@ -121,11 +123,13 @@ public class Gamee extends Canvas implements Runnable{
 			}
 			
 		}else if (gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select){
+			
 			try {								//arrange your cpu usage
 			    Thread.sleep(10);                 //1000 milliseconds is one second. 
 			} catch(InterruptedException ex) {
 			    Thread.currentThread().interrupt();
 			}
+			
 			menu.tick();
 			handler.tick();
 		}
@@ -137,7 +141,7 @@ public class Gamee extends Canvas implements Runnable{
 			this.createBufferStrategy(3);
 			return;
 		}
-		Graphics g = bs.getDrawGraphics();
+		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 		
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);

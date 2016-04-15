@@ -2,6 +2,7 @@ package com.tutorial.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Random;
 
@@ -9,12 +10,14 @@ public class EnemyBoss2 extends GameObject {
 	
 	private Handler handler ;
 	Random r = new Random();
+	Image image;
 	
 	private int timer = 90;
 	
-	public EnemyBoss2(int x, int y, ID id, Handler handler) {
+	public EnemyBoss2(int x, int y, ID id, Handler handler ,Image image) {
 		super(x, y, id);
 		this.handler = handler;
+		this.image = image;
 		
 		velX = 0;
 		velY = -2;
@@ -40,7 +43,7 @@ public class EnemyBoss2 extends GameObject {
 		velX = Gamee.clamp(velX, -10, 10);
 		
 		int spawn = r.nextInt(10);
-		if (spawn == 0) handler.addObject(new EnemyBossBullet( (int)x+48 , (int)y+48, ID.EnemyBossBullet, handler, -5));
+		if (spawn == 0) handler.addObject(new EnemyBossBullet( (int)x+48 , (int)y+48, ID.EnemyBossBullet, handler, -5,image));
 	}
 	else timer--;
 	
@@ -51,7 +54,7 @@ public class EnemyBoss2 extends GameObject {
 	}
 
 
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		g.setColor(Color.RED);
 		g.fillRect((int)x,(int) y, 96, 96);
 		

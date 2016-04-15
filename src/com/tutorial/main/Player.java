@@ -1,8 +1,16 @@
 package com.tutorial.main;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 public class Player extends GameObject {
 		
@@ -10,26 +18,48 @@ public class Player extends GameObject {
 	private Handler handler ;
 	private Image image ;
 	public static String character = "img/skull.png";
+	private Animation anim;
+	private BufferedImage img;
+	private Graphics2D g;
+	private int offsetXanim = 70;
+    private int offsetYanim = -23;
+
 	
 	public Player(int x, int y, ID id, Handler handler ,Image image) { // we defined to prenferences of player
 		super(x, y, id);
 		this.handler = handler;
 		this.image = image;
 		
+		loadContent();
 	}
 	
 	public Rectangle getBounds(){
-		return new Rectangle((int)x, (int)y, 64, 64);
+		return new Rectangle((int)x, (int)y, 32, 32);
 	}
 	
 	public void tick() {
 		x += velX;
 		y += velY;
 	
-		x = Gamee.clamp(x, 0, Gamee.WIDTH - 71);
-		y = Gamee.clamp(y, 0, Gamee.HEIGHT - 92);
+		x = Gamee.clamp(x, 0, Gamee.WIDTH - 39);
+		y = Gamee.clamp(y, 0, Gamee.HEIGHT - 60);
 	
-		collision();	
+		 anim.changesCoordinates( (int)x -160 + offsetXanim, (int)y-10 + offsetYanim);     
+		
+		collision();		
+		
+	}
+	
+	public void loadContent (){
+		
+		try{
+			URL animImgUrl = this.getClass().getResource("img/playeranim.png");
+	        img = ImageIO.read(animImgUrl);	
+		}catch (IOException e) {
+			Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, e);
+		}
+		
+		anim = new Animation(img, 204, 34, 3, 20, true, (int)this.x + offsetXanim , (int)this.y + offsetYanim, 0);
 	}
 
 	public void collision (){		
@@ -46,10 +76,10 @@ public class Player extends GameObject {
 					}
 					
 					if(tempObject.getId() == ID.FastEnemy)
-						AudioPlayer.getSound("fast").play();
+						AudioPlayer.getSound("fast").play(1.00f,0.25f);
 					
 					if(tempObject.getId() == ID.SmartEnemy)
-						AudioPlayer.getSound("smart").play();
+						AudioPlayer.getSound("smart").play(1.00f,0.5f);
 					
 					if (Gamee.diff == 0)
 						HUD.HEALTH -= 2 ;
@@ -68,11 +98,12 @@ public class Player extends GameObject {
 		}
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		
 		
 		image.getImage(character);
 		g.drawImage(image.img, (int)x, (int)y, null);
+		anim.render(g);
 		//g.fillRect((int)x, (int)y, 32, 32);  old player
 	}
 
