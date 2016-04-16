@@ -15,6 +15,8 @@ public class Menu extends MouseAdapter {
 	private HUD hud;
 	private Random r = new Random();
 	private Image image;
+	private IO ýo = new IO();
+	public static int temp;
 
 	
 	public Menu ( Handler handler , HUD hud , Image image){
@@ -126,8 +128,14 @@ public class Menu extends MouseAdapter {
 			
 	}
 	if(Gamee.gameState == STATE.End){
-		if(mouseOver(mx, my, 210, 350, 200, 64))
+		if(mouseOver(mx, my, 210, 350, 200, 64)){
 			Gamee.gameState = STATE.Menu;
+			}
+			ýo.read();
+			Integer x = Integer.valueOf(ýo.highScore);
+			if (hud.getScore() >= x){
+				ýo.write();
+			}
 			hud.setLevel(1);
 			hud.setScore(0);
 			AudioPlayer.getSound("sound").play();
@@ -225,7 +233,10 @@ public class Menu extends MouseAdapter {
 			g.drawString("GAME OVER", 180, 100);  // title
 			
 			g.setFont(ftn3);
-			g.drawString("you lost with a score of: " + hud.getScore(), 175, 200);
+			temp = hud.getScore();
+			g.drawString("you lost with a score of: " + hud.getScore(), 75, 200);
+			ýo.read();
+			g.drawString("your last highest Score is : " + ýo.highScore , 75, 250);
 			g.setFont(ftn2);
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Try Again", 245, 390);

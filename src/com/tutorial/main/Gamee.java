@@ -25,6 +25,7 @@ public class Gamee extends Canvas implements Runnable{
 	private Spawn spawner;
 	private Menu menu;
 	private Image image;
+	//private IO io;
 	
 	public enum STATE {
 		Menu,
@@ -43,7 +44,8 @@ public class Gamee extends Canvas implements Runnable{
 		hud = new HUD() ;
 		image = new Image();
 		menu = new Menu(handler, hud ,image);
-		
+		//io = new IO();
+	
 		AudioPlayer.load();
 		AudioPlayer.getMusic("music").loop();
 		
@@ -105,6 +107,7 @@ public class Gamee extends Canvas implements Runnable{
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}*/
+		
 		if (gameState == STATE.Game){
 		
 			if (!paused){
