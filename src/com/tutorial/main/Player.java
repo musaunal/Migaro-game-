@@ -92,7 +92,15 @@ public class Player extends GameObject {
 					AudioPlayer.getSound("basýc").play();
 					HUD.HEALTH -= 1 ;
 				}
-			}		
+			}else if (tempObject.getId() == ID.Heal){
+				if (getBounds().intersects(tempObject.getBounds())){
+					
+					handler.removeObject(tempObject);
+					HUD.HEALTH +=20;
+					AudioPlayer.getSound("heal").play();
+					
+				}
+			}
 		}
 	}
 

@@ -21,6 +21,7 @@ public class AudioPlayer {
 			soundMap.put("basýc", new Sound("res/basic.ogg"));
 			soundMap.put("fast", new Sound("res/fast.ogg"));
 			soundMap.put("smart", new Sound("res/smart.ogg"));
+			soundMap.put("heal", new Sound("res/heal.ogg"));
 			musicMap.put("music", new Music("res/background.ogg"));
 		} catch (SlickException e) {
 			e.printStackTrace();

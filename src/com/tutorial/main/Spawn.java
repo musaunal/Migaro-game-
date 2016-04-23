@@ -30,36 +30,43 @@ public class Spawn {
 				}else if (hud.getLevel() == 3){
 					handler.addObject(new BasicEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
 				}else if (hud.getLevel() == 4){
+					handler.addObject(new Heal(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.Heal,image));
 					handler.addObject(new FastEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.FastEnemy, handler));
 				}else if (hud.getLevel() == 5){
 					handler.addObject(new SmartEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.SmartEnemy, handler ));
 				}else if (hud.getLevel() == 6){
 					handler.addObject(new FastEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.FastEnemy, handler));
 				}else if (hud.getLevel() == 7){
+					handler.addObject(new Heal(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.Heal, image));
 					handler.addObject(new SmartEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.SmartEnemy, handler ));
 				}else if (hud.getLevel() == 10){
 					handler.clearEnemys();
 					AudioPlayer.getSound("boss").play();
+					handler.addObject(new Heal(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.Heal, image));
 					handler.addObject(new EnemyBoss((Gamee.WIDTH/2)-48 , -120 , ID.EnemyBoss, handler ,image));
 				}
 			}else if (Gamee.diff == 1){
 				if (hud.getLevel() == 2){
 					handler.addObject(new HardEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
 				}else if (hud.getLevel() == 3){
+					handler.addObject(new Heal(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.Heal , image));
 					handler.addObject(new HardEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
 				}else if (hud.getLevel() == 4){
 					handler.addObject(new FastEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.FastEnemy, handler));
 				}else if (hud.getLevel() == 5){
 					handler.addObject(new SmartEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.SmartEnemy, handler));
 				}else if (hud.getLevel() == 6){
+					handler.addObject(new Heal(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.Heal ,image));
 					handler.addObject(new HardEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.FastEnemy, handler));
 				}else if (hud.getLevel() == 7){
 					handler.addObject(new HardEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.SmartEnemy, handler));
 				}else if (hud.getLevel() == 10){
 					handler.clearEnemys();
 					AudioPlayer.getSound("boss").play();
+					handler.addObject(new Heal(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.Heal ,image));
 					handler.addObject(new EnemyBoss((Gamee.WIDTH/2)-48 , -120 , ID.EnemyBoss, handler ,image));
 				}else if (hud.getLevel() == 15){
+					handler.addObject(new Heal(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.Heal ,image));
 					handler.addObject(new EnemyBoss2((Gamee.WIDTH/2)-48 , 600 , ID.EnemyBoss2, handler ,image));
 				}
 			}

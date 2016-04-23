@@ -10,6 +10,7 @@ public enum ID {
 	EnemyBoss(),
 	EnemyBoss2(),
 	EnemyBossBullet(),
-	Trail()
+	Trail(),
+	Heal()
 	;
 }

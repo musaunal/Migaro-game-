@@ -19,6 +19,7 @@ public class Image {
 	public String button = "img/button.png";
 	public String bullet = "img/bullet.png";
 	public String playerAnim ="img/playeranim.png";
+	public String heal = "img/heal.png";
 	
 	
 	public void getImage (String picture){
