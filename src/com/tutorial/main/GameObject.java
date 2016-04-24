@@ -15,7 +15,7 @@ public abstract class GameObject {
 		this.id = id;
 	}
 	
-	public abstract void tick ();     // "tick"in  görevini iyice araþtýr /////////////////
+	public abstract void tick ();
 	public abstract void render(Graphics2D g);
 	public abstract Rectangle getBounds();
 	

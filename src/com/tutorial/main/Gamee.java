@@ -25,14 +25,15 @@ public class Gamee extends Canvas implements Runnable{
 	private Spawn spawner;
 	private Menu menu;
 	private Image image;
-	//private IO io;
+	private IO io;
 	
 	public enum STATE {
 		Menu,
 		Options,
 		Select,
 		Game,
-		End
+		End,
+		Character
 	};
 	
 	
@@ -44,7 +45,7 @@ public class Gamee extends Canvas implements Runnable{
 		hud = new HUD() ;
 		image = new Image();
 		menu = new Menu(handler, hud ,image);
-		//io = new IO();
+		io = new IO();
 	
 		AudioPlayer.load();
 		AudioPlayer.getMusic("music").loop();
@@ -53,7 +54,7 @@ public class Gamee extends Canvas implements Runnable{
 		
 		spawner = new Spawn(handler ,hud , image);
 		
-		this.addKeyListener(new KeyInput(handler));
+		this.addKeyListener(new KeyInput(handler , io));
 		this.addMouseListener(menu);
 		
 		if(gameState == STATE.Game){
@@ -117,7 +118,7 @@ public class Gamee extends Canvas implements Runnable{
 				handler.tick();
 				
 				if (HUD.HEALTH <= 0){
-					HUD.HEALTH=100;
+					hud.build();
 					AudioPlayer.getSound("end").play();
 					gameState = STATE.End;
 					handler.clearEnemys();
@@ -156,7 +157,7 @@ public class Gamee extends Canvas implements Runnable{
 		
 		if (gameState == STATE.Game){
 			hud.render(g);
-		}else if (gameState == STATE.Menu || gameState == STATE.Options || gameState == STATE.End || gameState == STATE.Select){
+		}else if (gameState == STATE.Menu || gameState == STATE.Options || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Character){             
 			menu.render(g);
 		}
 		

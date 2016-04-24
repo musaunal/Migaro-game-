@@ -29,122 +29,131 @@ public class Menu extends MouseAdapter {
 		int mx = e.getX();
 		int my = e.getY();
 		 
-		
-	if (Gamee.gameState == STATE.Menu){
-		
-		
-		//play button
-		if (mouseOver(mx, my, 210, 150, 200, 64)){
-			AudioPlayer.getSound("sound").play();	
-			Gamee.gameState = STATE.Select;
-			return; 			// return ne iþ yapar
-		}
-		
-		//options button
-		if(mouseOver(mx, my, 210, 250, 200, 64)){
-			AudioPlayer.getSound("sound").play();	
-			Gamee.gameState = STATE.Options;
-		}
-		
-		//quit button
-		if (mouseOver(mx, my, 210, 350, 200, 64) ){
-			AudioPlayer.getSound("sound").play();	
-			System.exit(1);
-		}
-	}
-	
-	if (Gamee.gameState == STATE.Select){
-		//normal button
-		if (mouseOver(mx, my, 210, 150, 200, 64)){
-			AudioPlayer.getSound("sound").play();	
-			Gamee.gameState = STATE.Game;			
-			handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image));
-			handler.addObject(new BasicEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
 			
-			Gamee.diff = 0;
-		}
-		
-		//hard button
-		if(mouseOver(mx, my, 210, 250, 200, 64)){
-			AudioPlayer.getSound("sound").play();		
-			Gamee.gameState = STATE.Game;			
-			handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image));
-			handler.addObject(new HardEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
+		if (Gamee.gameState == STATE.Menu){
 			
-			Gamee.diff = 1;
-		}
-		
-		//back button
-		if (mouseOver(mx, my, 210, 350, 200, 64) ){
-			Gamee.gameState = STATE.Menu;
-			AudioPlayer.getSound("sound").play();	
-			return;
-		}
-	}
-	if (Gamee.gameState == STATE.Options){
-		
-		//back button for options
-		if(mouseOver(mx, my, 210, 350, 200, 64)){
-			Gamee.gameState = STATE.Menu;
-			AudioPlayer.getSound("sound").play();	
-			return;
-		}
-		
-		//	choose button creaper
-		if (mouseOver(mx, my, 75 , 125 ,32 ,32 )){
-			AudioPlayer.getSound("sound").play();
-			Player.character = image.creaper;
-			return;
-		}
-		
-		//choose button soldier
-		if (mouseOver(mx, my, 175 , 125 ,32 ,32 )){
-			AudioPlayer.getSound("sound").play();
-			Player.character = image.soldier;
-			return;
-		}
-		
-		//choose button ýronman
-		if (mouseOver(mx, my, 270 ,125 ,32 ,32 )){
-			AudioPlayer.getSound("sound").play();
-			Player.character = image.ýronman;
-			return;
-		}
-		
-		//choose button payday
-		if (mouseOver(mx, my, 385 , 125 ,32 ,32 )){
-			AudioPlayer.getSound("sound").play();
-			Player.character = image.payday;
-			return;
-		}
-		
-		//choose button skull
-		if (mouseOver(mx, my, 500 , 125 ,32 ,32 )){
-			AudioPlayer.getSound("sound").play();
-			Player.character = image.skull;
-			return;
-		}
-			
-			
-	}
-	if(Gamee.gameState == STATE.End){
-		if(mouseOver(mx, my, 210, 350, 200, 64)){
-			Gamee.gameState = STATE.Menu;
+			//play button
+			if (mouseOver(mx, my, 210, 150, 200, 64)){
+				AudioPlayer.getSound("sound").play();	
+				Gamee.gameState = STATE.Select;
+				return; 			// return ne iþ yapar
 			}
-			ýo.read();
-			Integer x = Integer.valueOf(ýo.highScore);
+			
+			//options button
+			if(mouseOver(mx, my, 210, 250, 200, 64)){
+				AudioPlayer.getSound("sound").play();	
+				Gamee.gameState = STATE.Options;
+			}
+			
+			//quit button
+			if (mouseOver(mx, my, 210, 350, 200, 64) ){
+				AudioPlayer.getSound("sound").play();	
+				System.exit(1);
+			}
+		}
+		
+		if (Gamee.gameState == STATE.Select){
+			//normal button
+			if (mouseOver(mx, my, 210, 150, 200, 64)){
+				AudioPlayer.getSound("sound").play();	
+				Gamee.gameState = STATE.Game;			
+				handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image));
+				handler.addObject(new BasicEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
+				
+				Gamee.diff = 0;
+			}
+			
+			//hard button
+			if(mouseOver(mx, my, 210, 250, 200, 64)){
+				AudioPlayer.getSound("sound").play();		
+				Gamee.gameState = STATE.Game;			
+				handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image));
+				handler.addObject(new HardEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
+				
+				Gamee.diff = 1;
+			}
+			
+			//back button
+			if (mouseOver(mx, my, 210, 350, 200, 64) ){
+				Gamee.gameState = STATE.Menu;
+				AudioPlayer.getSound("sound").play();	
+				return;
+			}
+		}
+		if (Gamee.gameState == STATE.Options){
+			
+			//back button for options
+			if(mouseOver(mx, my, 390, 350, 200, 64)){
+				Gamee.gameState = STATE.Menu;
+				AudioPlayer.getSound("sound").play();	
+				return;
+			}
+			//skill button 
+			if (mouseOver(mx, my, 70, 350, 200, 64)){
+				Gamee.gameState = STATE.Character;
+				AudioPlayer.getSound("sound").play();
+				return;
+			}
+			
+			//	choose button creaper
+			if (mouseOver(mx, my, 75 , 125 ,32 ,32 )){
+				AudioPlayer.getSound("sound").play();
+				Player.character = image.creaper;
+				return;
+			}
+			
+			//choose button soldier
+			if (mouseOver(mx, my, 175 , 125 ,32 ,32 )){
+				AudioPlayer.getSound("sound").play();
+				Player.character = image.soldier;
+				return;
+			}
+			
+			//choose button ýronman
+			if (mouseOver(mx, my, 270 ,125 ,32 ,32 )){
+				AudioPlayer.getSound("sound").play();
+				Player.character = image.ýronman;
+				return;
+			}
+			
+			//choose button payday
+			if (mouseOver(mx, my, 385 , 125 ,32 ,32 )){
+				AudioPlayer.getSound("sound").play();
+				Player.character = image.payday;
+				return;
+			}
+			
+			//choose button skull
+			if (mouseOver(mx, my, 500 , 125 ,32 ,32 )){
+				AudioPlayer.getSound("sound").play();
+				Player.character = image.skull;
+				return;
+			}
+				
+				
+		}
+		if(Gamee.gameState == STATE.End){
+			if(mouseOver(mx, my, 210, 350, 200, 64)){
+				Gamee.gameState = STATE.Menu;
+				}
+			ýo.read("Save/highScore.txt" );
+			int x = Integer.valueOf(ýo.temp);
 			if (hud.getScore() >= x){
-				ýo.write();
+				ýo.write("Save/highScore.txt");
 			}
 			hud.setLevel(1);
 			hud.setScore(0);
 			AudioPlayer.getSound("sound").play();
 			return;
+			}
+		
+		if (Gamee.gameState == STATE.Character) {
+			if (mouseOver(mx, my, 210, 350, 200, 64)){
+				Gamee.gameState = STATE.Options;
+				AudioPlayer.getSound("sound").play();
+			}
+			
 		}
-	
-	
-		
-		
 	}
 	public void mouseRelease(MouseEvent e){
 		
@@ -185,7 +194,8 @@ public class Menu extends MouseAdapter {
 			
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Quit", 275, 390);
-		}else if (Gamee.gameState == STATE.Options){
+		} 
+		if (Gamee.gameState == STATE.Options){
 			
 			image.getImage("img/back.png");    //background picture
 			g.drawImage(image.img, 0, 0, null);
@@ -199,8 +209,11 @@ public class Menu extends MouseAdapter {
 			g.drawString("Choose your character", 40, 75);  // title
 			
 			g.setFont(ftn2);
-			g.drawRect(210, 350, 200, 64);
-			g.drawString("Back", 275, 390);
+			g.drawRect(390, 350, 200, 64);
+			g.drawString("Back", 455, 390);
+			
+			g.drawRect(70, 350, 200, 64);
+			g.drawString("Skills", 135, 390);
 			
 			image.getImage(image.creaper);
 			g.drawImage(image.img , 75 , 125 ,null);
@@ -218,7 +231,8 @@ public class Menu extends MouseAdapter {
 			g.drawImage(image.img , 500 , 125 ,null);
 
 			
-		}else if (Gamee.gameState == STATE.End){
+		}
+		if (Gamee.gameState == STATE.End){
 			
 			image.getImage("img/back.png");
 			g.drawImage(image.img, 0, 0, null);
@@ -235,12 +249,52 @@ public class Menu extends MouseAdapter {
 			g.setFont(ftn3);
 			temp = hud.getScore();
 			g.drawString("you lost with a score of: " + hud.getScore(), 75, 200);
-			ýo.read();
-			g.drawString("your last highest Score is : " + ýo.highScore , 75, 250);
+			ýo.read("Save/highScore.txt");
+			g.drawString("your last highest Score is : " + ýo.temp , 75, 250);
 			g.setFont(ftn2);
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Try Again", 245, 390);
-		}else if (Gamee.gameState == STATE.Select){
+		}
+		if (Gamee.gameState == STATE.Character){
+			
+			image.getImage("img/back.png");
+			g.drawImage(image.img, 0, 0, null);
+			
+			g.setColor(Color.white);
+			
+			Font ftn = new Font("arial",1,50);
+			Font ftn2 = new Font("arial",1,30);
+			Font ftn3 = new Font("arial",1,20);
+			
+			g.setFont(ftn);
+			g.drawString("Character", 200, 50);
+			
+			g.setFont(ftn3);
+			g.drawString("Character Name =", 20, 100);
+			ýo.read("Save/characterName.txt");
+			g.drawString(ýo.temp, 200, 100);
+			
+			g.drawString("Speed =", 20, 300);
+			ýo.read("Save/speed.txt");
+			g.drawString(ýo.temp, 120,300 );
+			
+			g.drawString("health =", 20, 150);
+			ýo.read("Save/health.txt");
+			g.drawString(ýo.temp, 120,150 );
+			
+			g.drawString("Power =", 20, 250);
+			ýo.read("Save/power.txt");
+			g.drawString(ýo.temp, 120,250 );
+			
+			g.drawString("Mana =", 20, 200);
+			ýo.read("Save/mana.txt");
+			g.drawString(ýo.temp, 120,200 );
+			
+			g.setFont(ftn2);
+			g.drawRect(210, 350, 200, 64);
+			g.drawString("Back", 275, 390);
+		}
+		if (Gamee.gameState == STATE.Select){
 			
 			image.getImage("img/back.png");
 			g.drawImage(image.img, 0, 0, null);
@@ -263,6 +317,6 @@ public class Menu extends MouseAdapter {
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Back", 275, 390);
 		}
-	}
+	}	
 
 }

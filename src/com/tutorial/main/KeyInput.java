@@ -9,11 +9,11 @@ public class KeyInput extends KeyAdapter{
 
 	private Handler handler;
 	private boolean[] keyDown = new boolean[4];
-
+	private IO ýo;
 	
-	public KeyInput(Handler handler){
+	public KeyInput(Handler handler , IO ýo){
 		this.handler = handler;
-		
+		this.ýo = ýo;
 		
 		for (int i=0; i<4; i++){
 			keyDown[i]=false;
@@ -29,10 +29,12 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				//key events for player 1 
 				
-				if(key == KeyEvent.VK_W){ tempObject.setVelY(-5); keyDown[0]=true; }
-				if(key == KeyEvent.VK_A){ tempObject.setVelX(-5); keyDown[1]=true; }
-				if(key == KeyEvent.VK_S){ tempObject.setVelY(5); keyDown[2]=true; }
-				if(key == KeyEvent.VK_D){ tempObject.setVelX(5); keyDown[3]=true; }
+				ýo.read("Save/speed.txt");
+				int speed = Integer.valueOf(ýo.temp);
+				if(key == KeyEvent.VK_W){ tempObject.setVelY(-1*speed); keyDown[0]=true; }
+				if(key == KeyEvent.VK_A){ tempObject.setVelX(-1*speed); keyDown[1]=true; }
+				if(key == KeyEvent.VK_S){ tempObject.setVelY(speed); keyDown[2]=true; }
+				if(key == KeyEvent.VK_D){ tempObject.setVelX(speed); keyDown[3]=true; }
 			}
 		}
 	}

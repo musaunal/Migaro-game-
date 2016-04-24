@@ -110,7 +110,6 @@ public class Player extends GameObject {
 		image.getImage(character);
 		g.drawImage(image.img, (int)x, (int)y, null);
 		anim.render(g);
-		//g.fillRect((int)x, (int)y, 32, 32);  old player
 	}
 
 }
