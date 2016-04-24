@@ -10,14 +10,22 @@ public class KeyInput extends KeyAdapter{
 	private Handler handler;
 	private boolean[] keyDown = new boolean[4];
 	private IO ýo;
+	public int speed;
 	
 	public KeyInput(Handler handler , IO ýo){
 		this.handler = handler;
 		this.ýo = ýo;
 		
+		resetSpeed();
+		
 		for (int i=0; i<4; i++){
 			keyDown[i]=false;
 		}
+	}
+	
+	public void resetSpeed(){
+		ýo.read("Save/speed.txt");
+		speed = Integer.valueOf(ýo.temp);
 	}
 	
 	public void keyPressed(KeyEvent e){
@@ -29,8 +37,7 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				//key events for player 1 
 				
-				ýo.read("Save/speed.txt");
-				int speed = Integer.valueOf(ýo.temp);
+				if(key == KeyEvent.VK_SPACE && HUD.mana != 0 ){speed =10; HUD.mana--; };
 				if(key == KeyEvent.VK_W){ tempObject.setVelY(-1*speed); keyDown[0]=true; }
 				if(key == KeyEvent.VK_A){ tempObject.setVelX(-1*speed); keyDown[1]=true; }
 				if(key == KeyEvent.VK_S){ tempObject.setVelY(speed); keyDown[2]=true; }
@@ -48,11 +55,12 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				//key events for Player 1 
 				
+				if(key == KeyEvent.VK_SPACE){resetSpeed();}
 				if(key == KeyEvent.VK_W)keyDown[0]= false ;
 				if(key == KeyEvent.VK_A)keyDown[1]= false ;
 				if(key == KeyEvent.VK_S)keyDown[2]= false ;
 				if(key == KeyEvent.VK_D)keyDown[3]= false ;
-			
+				
 				//vertical movement 
 				if( !keyDown[0] && !keyDown[2]) tempObject.setVelY(0);
 				//horizonal movement

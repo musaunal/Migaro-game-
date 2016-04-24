@@ -16,6 +16,7 @@ public class Player extends GameObject {
 	Random r = new Random();
 	private Handler handler ;
 	private Image image ;
+	private IO ýo;
 	public static String character = "img/skull.png";
 	private Animation anim;
 	private BufferedImage img;
@@ -23,10 +24,11 @@ public class Player extends GameObject {
     private int offsetYanim = -23;
 
 	
-	public Player(int x, int y, ID id, Handler handler ,Image image) { // we defined to prenferences of player
+	public Player(int x, int y, ID id, Handler handler ,Image image ,IO ýo) { // we defined to prenferences of player
 		super(x, y, id);
 		this.handler = handler;
 		this.image = image;
+		this.ýo = ýo;
 		
 		loadContent();
 	}
@@ -79,10 +81,13 @@ public class Player extends GameObject {
 					if(tempObject.getId() == ID.SmartEnemy)
 						AudioPlayer.getSound("smart").play(1.00f,0.5f);
 					
+					ýo.read("Save/armor.txt");
+					float y = Integer.valueOf(ýo.temp)/10;
+					
 					if (Gamee.diff == 0)
-						HUD.HEALTH -= 2 ;
+						HUD.HEALTH -= 2 -y ;
 					else if (Gamee.diff == 1)
-						HUD.HEALTH -= 3;
+						HUD.HEALTH -= 3 -y;
 					
 					
 					

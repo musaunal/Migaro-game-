@@ -26,6 +26,7 @@ public class Gamee extends Canvas implements Runnable{
 	private Menu menu;
 	private Image image;
 	private IO io;
+	private KeyInput keyInput;
 	
 	public enum STATE {
 		Menu,
@@ -42,10 +43,11 @@ public class Gamee extends Canvas implements Runnable{
 	public Gamee(){
 		handler = new Handler();
 		r = new Random();
-		hud = new HUD() ;
+		hud = new HUD(keyInput) ;
 		image = new Image();
 		menu = new Menu(handler, hud ,image);
 		io = new IO();
+		keyInput = new KeyInput(handler, io);
 	
 		AudioPlayer.load();
 		AudioPlayer.getMusic("music").loop();
@@ -58,7 +60,7 @@ public class Gamee extends Canvas implements Runnable{
 		this.addMouseListener(menu);
 		
 		if(gameState == STATE.Game){
-			handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player , handler , image));
+			handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player , handler , image ,io));
 			handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 60), r.nextInt(HEIGHT - 50), ID.BasicEnemy, handler));
 		}
 	}

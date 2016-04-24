@@ -5,14 +5,18 @@ import java.awt.Graphics;
 
 public class HUD extends IO {
 
-	public static float HEALTH;	
+	public static float HEALTH;
+	public static double mana;
 	private float greenValue = 255;
 	
 	private int score = 0;
 	private int level = 1;
 	
-	public HUD(){
+	private KeyInput keyInput;
+	
+	public HUD(KeyInput keyInput){
 		
+		this.keyInput = keyInput;
 		build();
 		
 	}
@@ -21,6 +25,10 @@ public class HUD extends IO {
 		read("Save/health.txt");
 		float x = Integer.valueOf(temp);
 		HEALTH = x;
+		
+		read("Save/mana.txt");
+		int y = Integer.valueOf(temp);
+		mana = y;
 	}
 	
 	public void tick (){
@@ -35,6 +43,10 @@ public class HUD extends IO {
 		g.fillRect(15, 15, (int)HEALTH *2, 32);
 		g.setColor(new Color(75, (int)greenValue, 0));
 		g.fillRect(15, 15, (int)HEALTH * 2, 32);
+		
+		g.setColor(Color.blue);
+		g.fillRect(15, 100, (int)mana*2, 32);
+		
 		g.setColor(Color.WHITE);
 		g.drawRect(15, 15,(int)HEALTH * 2, 32);
 

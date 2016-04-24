@@ -6,6 +6,7 @@ import java.util.LinkedList;
 public class Handler {
 
 	private Image image = new Image();
+	private IO ýo = new IO();
 	
 	LinkedList <GameObject> object = new LinkedList<GameObject>();
 	
@@ -31,7 +32,7 @@ public class Handler {
 			if (tempObject.getId() == ID.Player ) {
 				object.clear();
 				if (Gamee.gameState != Gamee.STATE.End)
-				addObject(new Player( (int)tempObject.getX(), (int)tempObject.getY(), ID.Player, this ,image));
+				addObject(new Player( (int)tempObject.getX(), (int)tempObject.getY(), ID.Player, this ,image ,ýo));
 			}
 		}
 	}

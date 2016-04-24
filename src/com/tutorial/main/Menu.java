@@ -57,7 +57,7 @@ public class Menu extends MouseAdapter {
 			if (mouseOver(mx, my, 210, 150, 200, 64)){
 				AudioPlayer.getSound("sound").play();	
 				Gamee.gameState = STATE.Game;			
-				handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image));
+				handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image ,ýo));
 				handler.addObject(new BasicEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
 				
 				Gamee.diff = 0;
@@ -67,7 +67,7 @@ public class Menu extends MouseAdapter {
 			if(mouseOver(mx, my, 210, 250, 200, 64)){
 				AudioPlayer.getSound("sound").play();		
 				Gamee.gameState = STATE.Game;			
-				handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image));
+				handler.addObject(new Player(Gamee.WIDTH/2-32,Gamee.HEIGHT/2-32, ID.Player , handler ,image , ýo));
 				handler.addObject(new HardEnemy(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.BasicEnemy, handler));
 				
 				Gamee.diff = 1;
