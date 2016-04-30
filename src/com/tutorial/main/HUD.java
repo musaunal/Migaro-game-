@@ -12,11 +12,8 @@ public class HUD extends IO {
 	private int score = 0;
 	private int level = 1;
 	
-	private KeyInput keyInput;
-	
-	public HUD(KeyInput keyInput){
+	public HUD(){
 		
-		this.keyInput = keyInput;
 		build();
 		
 	}

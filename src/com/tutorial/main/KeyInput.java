@@ -9,6 +9,7 @@ public class KeyInput extends KeyAdapter{
 
 	private Handler handler;
 	private boolean[] keyDown = new boolean[4];
+	private boolean mana=false ;
 	private IO ýo;
 	public int speed;
 	
@@ -37,11 +38,27 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				//key events for player 1 
 				
-				if(key == KeyEvent.VK_SPACE && HUD.mana != 0 ){speed =10; HUD.mana--; };
-				if(key == KeyEvent.VK_W){ tempObject.setVelY(-1*speed); keyDown[0]=true; }
-				if(key == KeyEvent.VK_A){ tempObject.setVelX(-1*speed); keyDown[1]=true; }
-				if(key == KeyEvent.VK_S){ tempObject.setVelY(speed); keyDown[2]=true; }
-				if(key == KeyEvent.VK_D){ tempObject.setVelX(speed); keyDown[3]=true; }
+				if(key == KeyEvent.VK_SPACE && HUD.mana != 0 )mana = true;
+				if(key == KeyEvent.VK_W){
+					keyDown[0]=true; 
+					if (mana && HUD.mana!=0) {tempObject.setVelY(-2*speed); HUD.mana-=2; }
+					else  tempObject.setVelY(-1*speed);
+				}
+				if(key == KeyEvent.VK_A){
+					keyDown[1]=true;
+					if(mana && HUD.mana!=0) { tempObject.setVelX(-2*speed); HUD.mana-=2; }
+					else tempObject.setVelX(-1*speed);
+				}
+				if(key == KeyEvent.VK_S){
+					keyDown[2]=true; 
+					if(mana && HUD.mana!=0){ tempObject.setVelY(2*speed); HUD.mana-=2; }
+					else  tempObject.setVelY(speed);
+				}
+				if(key == KeyEvent.VK_D){ 
+					keyDown[3]=true;
+					if(mana && HUD.mana!=0){ tempObject.setVelX(2*speed); HUD.mana-=2; }
+					else tempObject.setVelX(speed);
+				}
 			}
 		}
 	}
@@ -55,7 +72,7 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				//key events for Player 1 
 				
-				if(key == KeyEvent.VK_SPACE){resetSpeed();}
+				if(key == KeyEvent.VK_SPACE){resetSpeed(); mana=false;}
 				if(key == KeyEvent.VK_W)keyDown[0]= false ;
 				if(key == KeyEvent.VK_A)keyDown[1]= false ;
 				if(key == KeyEvent.VK_S)keyDown[2]= false ;
