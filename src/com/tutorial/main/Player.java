@@ -20,8 +20,8 @@ public class Player extends GameObject {
 	public static String character = "img/skull.png";
 	private Animation anim;
 	private BufferedImage img;
-	private int offsetXanim = 70;
-    private int offsetYanim = -23;
+	private int offsetXanim = 84;
+    private int offsetYanim = -20;
 
 	
 	public Player(int x, int y, ID id, Handler handler ,Image image ,IO ýo) { // we defined to prenferences of player
@@ -34,7 +34,7 @@ public class Player extends GameObject {
 	}
 	
 	public Rectangle getBounds(){
-		return new Rectangle((int)x, (int)y, 32, 32);
+		return new Rectangle((int)x, (int)y, 64, 64);
 	}
 	
 	public void tick() {

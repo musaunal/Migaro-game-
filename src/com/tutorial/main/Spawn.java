@@ -67,7 +67,7 @@ public class Spawn {
 					handler.addObject(new EnemyBoss((Gamee.WIDTH/2)-48 , -120 , ID.EnemyBoss, handler ,image));
 				}else if (hud.getLevel() == 15){
 					handler.addObject(new Heal(r.nextInt(Gamee.WIDTH - 60), r.nextInt(Gamee.HEIGHT - 50), ID.Heal ,image));
-					handler.addObject(new EnemyBoss2((Gamee.WIDTH/2)-48 , 600 , ID.EnemyBoss2, handler ,image));
+					handler.addObject(new EnemyBoss2((Gamee.WIDTH/2)-48 , 868 , ID.EnemyBoss2, handler ,image));
 				}
 			}
 			

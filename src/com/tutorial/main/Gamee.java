@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Gamee extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1550691097823471818L;
-	public static final int WIDTH = 640 , HEIGHT = WIDTH/12*9 ;
+	public static final int WIDTH = 1366 , HEIGHT = 768 ;
 	
 	private Thread thread;
 	private boolean running = false;
