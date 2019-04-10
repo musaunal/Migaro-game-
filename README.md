@@ -32,10 +32,10 @@ cd ./SpaceGame
     - Libraries are located under ./Libs/jars
     - Lwjgl native libs located under ./Libs/lwjgl/native and choose your platform
  
-![](https://ibb.co/Thg2wW2)
+![resim](https://i.ibb.co/12mQ0zQ/Libarires-of-Space-Game.png)
 
 -Then click Run and Enjoy
 
 ## Deployment
-Do not forget to include jar files during compile
-Lwjgl native files should in the same directory with your executable jar file
+- Do not forget to include jar files during compile
+- Lwjgl native files should in the same directory with your executable jar file
